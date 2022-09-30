@@ -36,28 +36,28 @@ const setLocalData = async () => {
 
 //Remote initialization
 const setRemoteData = async () => {
-  try {
-    let res = await axios.get(picPath, {
-      responseType: "arraybuffer",
-    });
-    const pic = res.data;
-    let markup = "";
-    if (msgPath) {
-      const article = msgPath.split("/").pop();
-      res = await axios.get(
-        `https://api.telegra.ph/getPage/${article}?return_content=true`
-      );
-      const { content } = res.data.result;
-      markup = content.reduce(
-        (string, node) => string + generateMarkupRemote(node),
-        ""
-      );
-    }
-    await setPic(pic);
-    genIndex(markup);
-  } catch (e) {
-    throw new Error(e.message);
-  }
+  // try {
+  //   let res = await axios.get(picPath, {
+  //     responseType: "arraybuffer",
+  //   });
+  //   const pic = res.data;
+  //   let markup = "";
+  //   if (msgPath) {
+  //     const article = msgPath.split("/").pop();
+  //     res = await axios.get(
+  //       `https://api.telegra.ph/getPage/${article}?return_content=true`
+  //     );
+  //     const { content } = res.data.result;
+  //     markup = content.reduce(
+  //       (string, node) => string + generateMarkupRemote(node),
+  //       ""
+  //     );
+  //   }
+  //   await setPic(pic);
+  //   genIndex(markup);
+  // } catch (e) {
+  //   throw new Error(e.message);
+  // }
 };
 
 if (process.argv[2] === "--local") setLocalData();
